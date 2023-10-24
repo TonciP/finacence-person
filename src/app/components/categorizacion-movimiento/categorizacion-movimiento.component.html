@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="contet-body">
+    <span class="title-inicio">
+      <p>Categorizacion de Movimiento</p>
+    </span>
+  <article>
+      <span class="mx-3" *ngFor="let categoria of this.categorias">
+        <button type="button" class="button" (click)="asignarDatoCategoria(categoria)">{{categoria.nombre}}</button>
+      </span>
+    <button type="button" class="button btn-add" (click)="this.guardar=!this.guardar">{{this.guardar == false ? 'Actulizar' : 'Añadir'}}</button>
+    <div class="input-form">
+      <label for="cuentas">Seleccionar Una Cuenta</label>
+      <select name="cuentas" id="cuentas"
+              [(ngModel)]="this.seleccionado"
+              (change)="getCategoriaByCuentaId()">
+        <option *ngFor="let cuenta of this.cuentas" value="{{cuenta.id}}">{{cuenta.nombre}}</option>
+      </select>
+    </div>
+  </article>
+  <div class="content-form" *ngIf="this.guardar">
+    <form [formGroup]="categoriaSaveForm" (ngSubmit)="guardarCategoria()" >
+      <div class="input-form">
+        <label for="nombreGuardar">Nombre </label>
+        <input type="text" class="form-control"
+               id="nombreGuardar" name="nombre"
+               placeholder="Nombre de la Cuenta" formControlName="nombreGuardar">
+      </div>
+      <button type="submit" class="sudmit">Guardar</button>
+    </form>
+  </div>
+  <div class="content-form" *ngIf="!this.guardar">
+    <form [formGroup]="categoriaUpdateForm" (ngSubmit)="actulizarCategoria()">
+      <div class="input-form">
+        <label for="nombreActualizar">Nombre </label>
+        <input type="text" class="form-control" id="nombreActualizar"
+               [value]="this.categoria.nombre" name="nombre" placeholder="Nombre de la Cuenta" formControlName="nombreActualizar">
+      </div>
+      <button type="submit" class="sudmit">Actualizar</button>
+    </form>
+  </div>
+</div>

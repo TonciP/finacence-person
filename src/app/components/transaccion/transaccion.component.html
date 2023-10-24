@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="contet-body">
+    <span class="title-inicio">
+      <p>Transaccion</p>
+    </span>
+  <div class="content-form">
+    <form (ngSubmit)="onTransaccion()" [formGroup]="transaccionForm">
+      <div class="input-form">
+        <label for="monto">Monto </label>
+        <input type="number" class="form-control" id="monto" name="monto" placeholder="Monto" formControlName="monto">
+      </div>
+      <div class="input-form">
+        <label for="descripcion">Descipcion </label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion" formControlName="descripcion">
+      </div>
+      <div class="input-form">
+        <label for="cuentaOrigen">Cuenta Origen </label>
+        <select name="cuentaOrigen" id="cuentaOrigen"
+                formControlName="cuentaId"
+                [(ngModel)]="this.seleccionado"
+                (change)="onChange()">
+          <option *ngFor="let cuenta of this.cuentas" value="{{cuenta.id}}">{{cuenta.nombre}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo </label>
+        <select name="tipo" id="tipo" formControlName="tipo">
+          <option value="0">Ingreso</option>
+          <option value="1">Egreso</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="estado">Estado </label>
+        <select name="estado" id="estado" formControlName="estado">
+          <option value="0">Registrado</option>
+          <option value="1">Confirmado</option>
+          <option value="2">Anulado</option>
+        </select>
+      </div>
+      <div class="input-form">
+        <label for="categoria">Categoria </label>
+        <select name="categoria" id="categoria" formControlName="categoriaId">
+          <option *ngFor="let cateogria of this.categorias" value="{{cateogria.id}}">{{cateogria.nombre}}</option>
+        </select>
+      </div>
+      <button type="submit" class="sudmit">Continuar</button>
+    </form>
+  </div>
+</div>

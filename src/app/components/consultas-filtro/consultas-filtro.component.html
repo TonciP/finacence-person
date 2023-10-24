@@ -1,0 +1,76 @@
+<script src="consultas-filtro.component.ts"></script>
+<app-header></app-header>
+<div class="contet-body">
+    <span class="title-inicio">
+      <p>Consultas y Filtros</p>
+    </span>
+  <article class="mx-3" >
+    <label for="cuenta">Cuenta </label>
+    <select name="cuenta" id="cuenta"
+            [(ngModel)]="selectCuenta"
+            (change)="getCategoriasByCuentaId();">
+      <option *ngFor="let cuenta of this.cuentas" value="{{cuenta.id}}">{{cuenta.nombre}}</option>
+    </select>
+    <label for="categoria">Categoria </label>
+    <select name="categoria" id="categoria" [(ngModel)]="selectCategoria">
+      <option *ngFor="let categoria of this.categorias" value="{{categoria.id}}">{{categoria.nombre}}</option>
+    </select>
+    <label for="fechaRegistro">Fecha </label>
+    <input type="date" id="fechaRegistro" name="fechaRegistro" [(ngModel)]="this.fechaRegistro">
+
+    <button type="button" class="button btn-add"
+            (click)="getHistorialTransaccionesByConsulta(); getHistorialTransferenciasByConsulta(); vaciarCamposSeleccionados();">Buscar</button>
+  </article>
+  <article class="mx-3">
+    <span class="subtitle-inicio">
+      <p>Resumen de Finanzas</p>
+    </span>
+    <div class="contet-table" *ngIf="this.transacciones">
+      <table class="table contet-center">
+        <thead>
+        <tr>
+          <th>MONTO</th>
+          <th>DESCRIPCION</th>
+          <th>TIPO</th>
+          <th>ESTADO</th>
+          <th>FECHAREGISTRO</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let transaccion of this.transacciones">
+          <td>{{transaccion.monto | currency: 'Bs '}}</td>
+          <td>{{transaccion.descripcion}}</td>
+          <td>{{transaccion.tipo}}</td>
+          <td>{{transaccion.estado}}</td>
+          <td>{{transaccion.fechaRegistro |  date:'yyyy dd MM'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+  <article class="mx-3">
+    <span class="subtitle-inicio">
+      <p>Resumen de Finanzas Transferencia</p>
+    </span>
+    <div class="contet-table" *ngIf="this.transferencia">
+      <table class="table contet-center">
+        <thead>
+        <tr>
+          <th>MONTO</th>
+          <th>TIPO</th>
+          <th>ESTADO</th>
+          <th>FECHA TRANSFERENCIA</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let transferencia of this.transferencia">
+          <td>{{transferencia.monto | currency: 'Bs '}}</td>
+          <td>{{transferencia.tipo}}</td>
+          <td>{{transferencia.estado}}</td>
+          <td>{{transferencia.fechaTransferencia |  date:'yyyy dd MM'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</div>

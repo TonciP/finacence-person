@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="contet-body">
+    <span class="title-inicio">
+      <p>Transferencia</p>
+    </span>
+  <div class="content-form">
+    <form [formGroup]="transferenciaForm" (ngSubmit)="onTransferencia()">
+      <div class="input-form">
+        <label for="monto">Monto </label>
+        <input type="number" class="form-control" id="monto" name="monto" placeholder="Monto" formControlName="monto">
+      </div>
+      <div class="input-form">
+        <label for="cuentaOrigen">Cuenta Origen </label>
+        <select name="cuentaOrigen" id="cuentaOrigen"  formControlName="cuentaOrigenId" [(ngModel)]="this.seleccionado">
+          <option *ngFor="let cuenta of this.cuentas" value="{{cuenta.id}}">{{cuenta.nombre}}</option>
+        </select>
+      </div>
+      <div class="input-form">
+        <label for="cuentaOrigen">Cuenta Destino </label>
+        <select name="cuentaOrigen" id="cuentaDestino"  formControlName="cuentaDestinoId">
+          <option *ngFor="let cuenta of this.cuentas" value="{{cuenta.id}}" [disabled]="cuenta.id === this.seleccionado">{{cuenta.nombre}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo </label>
+        <select name="tipo" id="tipo" formControlName="tipo">
+          <option value="0">Ingreso</option>
+          <option value="1">Egreso</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="estado">Estado </label>
+        <select name="estado" id="estado" formControlName="estado">
+          <option value="0">Registrado</option>
+          <option value="1">Confirmado</option>
+          <option value="2">Anulado</option>
+        </select>
+      </div>
+      <button type="submit" class="sudmit">Continuar</button>
+    </form>
+  </div>
+</div>

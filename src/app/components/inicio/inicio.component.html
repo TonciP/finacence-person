@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="contet-body">
+    <span class="title-inicio">
+      <p>Panel de Administracion</p>
+    </span>
+  <article class="mx-3" >
+    <span class="mx-3" *ngFor="let cuenta of cuentas">
+      <button type="button" class="button" (click)="asignarDatoCuenta(cuenta)">{{cuenta.nombre}}</button>
+    </span>
+    <p>SaldoTotal {{this.saldoTotal | currency: 'Bs ' }}</p>
+  </article>
+  <article class="mx-6" *ngIf="this.cuenta">
+    <p>Cuente {{this.cuenta.id}}</p>
+    <p>Saldo {{this.cuenta.saldoInicial | currency: 'Bs ' }}</p>
+  </article>
+  <article class="mx-3">
+    <span class="subtitle-inicio">
+      <p>Resumen de Finanzas</p>
+    </span>
+    <div class="contet-table" *ngIf="this.transacciones">
+      <table class="table contet-center">
+        <thead>
+        <tr>
+          <th>Monto</th>
+          <th>descripcion</th>
+          <th>tipo</th>
+          <th>estado</th>
+          <th>fechaRegistro</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let transaccion of this.transacciones">
+          <td>{{transaccion.monto | currency: 'Bs '}}</td>
+          <td>{{transaccion.descripcion}}</td>
+          <td>{{transaccion.tipo}}</td>
+          <td>{{transaccion.estado}}</td>
+          <td>{{transaccion.fechaRegistro |  date:'yyyy dd MM'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</div>
