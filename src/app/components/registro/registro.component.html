@@ -1,0 +1,22 @@
+<div id="form">
+  <form id="form-content" [formGroup]="usuarioForm"  (ngSubmit)="onRegistro()">
+    <div class="img-user">
+      <img src="./assets/img_2.png" alt="UsuarioModel">
+      <h1 class="title-page">Registrarse</h1>
+    </div>
+<!--    <div class="input-form">-->
+<!--      <input type="text" name="snombre" id="snombre" placeholder="Nombre">-->
+<!--    </div>-->
+<!--    <div class="input-form">-->
+<!--      <input type="text" name="sapellido" id="sapellido" placeholder="Apellido">-->
+<!--    </div>-->
+    <div class="input-form">
+      <input type="text" name="scorreo" id="scorreo" placeholder="Correo" formControlName="correo">
+    </div>
+    <div class="input-form">
+      <input type="text" name="spassword" id="spassword" placeholder="Contraseña" formControlName="contrasena">
+    </div>
+    <!--<button type="submit" class="sudmit" routerLink="/">Guardar</button>-->
+    <button type="submit" class="sudmit">Registrase</button>
+  </form>
+</div>

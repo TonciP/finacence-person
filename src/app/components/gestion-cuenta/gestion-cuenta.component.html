@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="contet-body">
+    <span class="title-inicio">
+      <p>Gestion de Cuenta</p>
+    </span>
+    <article>
+      <span class="mx-3" *ngFor="let cuent of cuentas">
+        <button type="button" class="button" (click)="asignarDatoCuenta(cuent)">{{cuent.nombre}}</button>
+      </span>
+      <button type="button" class="button btn-add" (click)="this.guardar=!this.guardar">{{this.guardar == false ? 'Actulizar' : 'Añadir'}}</button>
+    </article>
+  <div class="content-form" *ngIf="this.guardar">
+    <form [formGroup]="cuentaSaveForm" (ngSubmit)="guardarCuenta()" >
+      <div class="input-form">
+        <label for="nombreGuardar">Nombre </label>
+        <input type="text" class="form-control"
+               id="nombreGuardar" name="nombre"
+               placeholder="Nombre de la Cuenta" formControlName="nombre">
+      </div>
+      <div class="input-form">
+        <label for="saldoInicialGuardar">Saldo Inicial</label>
+        <input type="number" class="form-control" id="saldoInicialGuardar" name="saldoInicial" placeholder="Saldo Inicial" formControlName="saldoInicial">
+      </div>
+      <button type="submit" class="sudmit">Guardar</button>
+    </form>
+  </div>
+  <div class="content-form" *ngIf="!this.guardar">
+    <form [formGroup]="cuentaUpdateForm" (ngSubmit)="actulizarCuenta()">
+      <div class="input-form">
+        <label for="nombreActualizar">Nombre </label>
+        <input type="text" class="form-control" id="nombreActualizar"
+               [value]="this.cuenta.nombre" name="nombre" placeholder="Nombre de la Cuenta" formControlName="nombre">
+      </div>
+      <div class="input-form">
+        <label for="saldoInicialActualizar">Saldo Inicial</label>
+        <input type="number" [value]="this.cuenta.saldoInicial" class="form-control" id="saldoInicialActualizar"
+               name="saldoInicial"
+               formControlName="saldoInicial"
+               placeholder="Saldo Inicial">
+      </div>
+      <button type="submit" class="sudmit">Actualizar</button>
+    </form>
+  </div>
+</div>
