@@ -8,6 +8,8 @@ import {ConsultasService} from "../../services/consultas.service";
 import {Consulta} from "../../models/consulta.model";
 import {Transferencia} from "../../models/transferencia.model";
 import {ConsultaTransferencia} from "../../models/consulta-transferencia.model";
+import {TransferenciaService} from "../../services/transferencia.service";
+import {TransaccionService} from "../../services/transaccion.service";
 
 @Component({
   selector: 'app-consultas-filtro',
@@ -29,8 +31,8 @@ export class ConsultasFiltroComponent {
     private cuentaService: CuentaService,
     private categoriaService: CategoriaService,
     private consultaService: ConsultasService,
-    private transferenciaService: ConsultasService,
-    private transaccionService: ConsultasService
+    private transferenciaService: TransferenciaService,
+    private transaccionService: TransaccionService
   ) { }
 
   ngOnInit(): void {
@@ -97,10 +99,22 @@ export class ConsultasFiltroComponent {
   }
 
   deleteTransaccion(id: string) {
-
+    this.transaccionService.eliminarTransaccion(id).subscribe(
+      res => {
+        this.getHistorialTransaccionesByConsulta();
+      },
+      err => {
+        console.log(err);
+      });
   }
 
   deleteTransferencia(id: string) {
-
+    this.transferenciaService.eliminarTransferencia(id).subscribe(
+      res => {
+        this.getHistorialTransferenciasByConsulta();
+      },
+      err => {
+        console.log(err);
+      });
   }
 }
