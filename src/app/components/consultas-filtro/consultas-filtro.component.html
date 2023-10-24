@@ -34,6 +34,7 @@
           <th>TIPO</th>
           <th>ESTADO</th>
           <th>FECHAREGISTRO</th>
+          <th>ACCION</th>
         </tr>
         </thead>
         <tbody>
@@ -43,6 +44,10 @@
           <td>{{transaccion.tipo}}</td>
           <td>{{transaccion.estado}}</td>
           <td>{{transaccion.fechaRegistro |  date:'yyyy dd MM'}}</td>
+          <td>
+            <button type="button" class="button btn-delete"
+                    (click)="deleteTransaccion(transaccion.id);">Eliminar</button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -60,6 +65,7 @@
           <th>TIPO</th>
           <th>ESTADO</th>
           <th>FECHA TRANSFERENCIA</th>
+          <th>ACCION</th>
         </tr>
         </thead>
         <tbody>
@@ -68,6 +74,10 @@
           <td>{{transferencia.tipo}}</td>
           <td>{{transferencia.estado}}</td>
           <td>{{transferencia.fechaTransferencia |  date:'yyyy dd MM'}}</td>
+          <td>
+            <button type="button" class="button btn-delete"
+                    (click)="deleteTransferencia(transferencia.id);">Eliminar</button>
+          </td>
         </tr>
         </tbody>
       </table>

@@ -28,7 +28,9 @@ export class ConsultasFiltroComponent {
   constructor(
     private cuentaService: CuentaService,
     private categoriaService: CategoriaService,
-    private consultaService: ConsultasService
+    private consultaService: ConsultasService,
+    private transferenciaService: ConsultasService,
+    private transaccionService: ConsultasService
   ) { }
 
   ngOnInit(): void {
@@ -92,5 +94,13 @@ export class ConsultasFiltroComponent {
         console.log(err);
       }
     );
+  }
+
+  deleteTransaccion(id: string) {
+
+  }
+
+  deleteTransferencia(id: string) {
+
   }
 }
